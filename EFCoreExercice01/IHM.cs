@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EFCoreExercice01.Models
+namespace EFCoreExercice01
 {
     internal static class IHM
     {
@@ -29,7 +29,7 @@ namespace EFCoreExercice01.Models
                     Console.Write("\t\tSaisie invalide ! Réessayer : ");
                     userChoice = Console.ReadLine()!;
                 }
-                return (intChoixMenu);
+                return intChoixMenu;
             }
         }
         public static (string numVoie, string complementAdr, string intituleVoie, string commune, int codePostal) StartAdresse()
@@ -50,7 +50,7 @@ namespace EFCoreExercice01.Models
 
                 Console.Write("Veuillez entrer le code postal ? ");
                 string strCodePostal = Console.ReadLine()!;
-                int intCodePostal = 0;      
+                int intCodePostal = 0;
                 while (!int.TryParse(strCodePostal, out intCodePostal))
                 {
                     Console.Write("\t\tSaisie invalide ! Réessayer : ");
@@ -76,7 +76,7 @@ namespace EFCoreExercice01.Models
             {
                 Console.Write("Veuillez saisir l'ID de la commune à éditer/supprimer ? ");
                 string strID = Console.ReadLine()!;
-                int intID= 0;
+                int intID = 0;
                 while (!int.TryParse(strID, out intID))
                 {
                     Console.Write("\t\tSaisie invalide ! Réessayer : ");

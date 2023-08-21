@@ -10,11 +10,12 @@ namespace Demo01EFCore.Data
 {
     internal class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext() : base()
-        { 
-        }
-
+#nullable disable // permet de supprimer les Warnings entre le blocs de code "disable" et "enable"
         public DbSet<Adresse> Adresses { get; set; }
+        public ApplicationDbContext() : base()
+        {
+        }
+#nullable enable
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

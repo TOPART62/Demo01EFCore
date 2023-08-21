@@ -3,6 +3,7 @@ using Demo01EFCore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCoreExercice01.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230821132228_Add_Required")]
+    partial class Add_Required
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,33 +27,26 @@ namespace EFCoreExercice01.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("CodePostal")
-                        .HasColumnType("int")
-                        .HasColumnName("code_postal");
+                        .HasColumnType("int");
 
                     b.Property<string>("Commune")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("commune");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Complement")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("complement");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("IntituleVoie")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("intitule_voie");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NumeroVoie")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("numero_voie");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

@@ -1,8 +1,10 @@
 ﻿using System.Data;
 using System.Linq.Expressions;
 using Demo01EFCore.Data;
+using EFCoreExercice01;
 using EFCoreExercice01.Models;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 
 namespace ADOExercices2
@@ -33,23 +35,30 @@ namespace ADOExercices2
                     case 1: // Voir les adresses
                         Console.WriteLine("------- Liste des adresses : ");
                         adresses = context.Adresses.ToList();
-                        foreach (var s in adresses)
-                            Console.WriteLine($"    {s.Id} {s.NumeroVoie} {s.Complement} {s.IntituleVoie} {s.CodePostal} {s.Commune}");
+                        foreach (var a in adresses)
+                            Console.WriteLine($"    {a.Id} {a.NumeroVoie} {a.Complement} {a.IntituleVoie} {a.CodePostal} {a.Commune}");
                         break;
 
                     case 2: // Ajouter une adresse
-                        Console.WriteLine("------- Ajouter une adresse ");
-                        (string strNumVoie, string strComplement, string strIntituleVoie, string strCommune, int intCodePostal) = IHM.StartAdresse();
-                        adresse = new Adresse()
+                        try
                         {
-                            NumeroVoie = strNumVoie,
-                            Complement = strComplement,
-                            IntituleVoie = strIntituleVoie,
-                            Commune = strCommune,
-                            CodePostal = intCodePostal
-                        };
-                        context.Adresses.Add(adresse);
-                        context.SaveChanges();
+                            Console.WriteLine("------- Ajouter une adresse ");
+                            (string strNumVoie, string strComplement, string strIntituleVoie, string strCommune, int intCodePostal) = IHM.StartAdresse();
+                            adresse = new Adresse()
+                            {
+                                NumeroVoie = strNumVoie,
+                                Complement = strComplement,
+                                IntituleVoie = strIntituleVoie,
+                                Commune = strCommune,
+                                CodePostal = intCodePostal
+                            };
+                            context.Adresses.Add(adresse);
+                            context.SaveChanges();
+                        }
+                        catch (Exception ex) 
+                        { 
+                            Console.WriteLine(ex.ToString());   
+                        }
                         break;
 
                     case 3: // Editer une adresse
@@ -79,6 +88,11 @@ namespace ADOExercices2
                         context.SaveChanges();
                         Console.WriteLine($"Adresse {intID} supprimée !!!");
                         break;
+
+                    //case 5: // renommer les colonnes
+                    //    Console.WriteLine("-------- Recherche des adresses par le nom de la commune");
+                    //    migrationBuilder.RenameColumn(name: "CodePostal", table: "Adresses", newName: "code_postal");
+                    //    break;
 
                     default:
                         Console.Clear();
