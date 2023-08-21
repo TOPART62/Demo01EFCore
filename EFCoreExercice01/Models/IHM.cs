@@ -74,7 +74,7 @@ namespace EFCoreExercice01.Models
         {
             while (true)
             {
-                Console.Write("Veuillez saisir l'ID de la commune à éditer ? ");
+                Console.Write("Veuillez saisir l'ID de la commune à éditer/supprimer ? ");
                 string strID = Console.ReadLine()!;
                 int intID= 0;
                 while (!int.TryParse(strID, out intID))

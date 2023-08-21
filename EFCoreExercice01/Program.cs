@@ -55,13 +55,14 @@ namespace ADOExercices2
                     case 3: // Editer une adresse
                         Console.WriteLine("-------- Recherche des adresses par le nom de la commune");
                         string strCommuneSearch = IHM.StartRechercheAdresseParNom();
-                        adresses = context.Adresses.Where(a => a.Commune!.StartsWith(strCommuneSearch)).ToList()!;
+                        //adresses = context.Adresses.Where(a => a.Commune!.StartsWith(strCommuneSearch)).ToList()!;
+                        adresses = context.Adresses.Where(a => a.Commune!.Contains(strCommuneSearch)).ToList()!;
                         foreach (var a in adresses)
                             Console.WriteLine($"    {a.Id} {a.NumeroVoie} {a.Complement} {a.IntituleVoie} {a.CodePostal} {a.Commune}");
                         // Sélectionner un Id d'adresse
                         intID = IHM.SelectIdAdresse();
                         adresse = context.Adresses.Find(intID)!;
-                        Console.WriteLine($"{adresse.Id} {adresse.NumeroVoie} {adresse.Complement} {adresse.IntituleVoie} " +
+                        Console.WriteLine($"    {adresse.Id} {adresse.NumeroVoie} {adresse.Complement} {adresse.IntituleVoie} " +
                             $"{adresse.CodePostal} {adresse.Commune}");
                         break;
 
