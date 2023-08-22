@@ -14,11 +14,11 @@ namespace DemoRelationsBlog.Data
         {
         }
 
-        public DbSet<Blog> blogs { get; set; }
-        public DbSet<Post> posts { get; set; }
-        public DbSet<BlogHeader> blogHeaders { get; set; }
-        public DbSet<Tag> tags { get; set; }
-        public DbSet<BlogTag> blogTags { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<BlogHeader> BlogHeaders { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<BlogTag> BlogTags { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

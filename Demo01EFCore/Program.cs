@@ -5,6 +5,7 @@ using Demo01EFCore.Models;
 
 using var context = new ApplicationDbContext();
 
+/*
 Student student = new Student()
 {
     FirstName = "Carole2",
@@ -12,6 +13,7 @@ Student student = new Student()
     Phone = "0101010101",
     Email = "carole.topart@gmail.com"
 };
+*/
 
 /*
 //CREATE => Ajout d'un étudiant

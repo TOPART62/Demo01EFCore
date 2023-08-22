@@ -14,10 +14,13 @@ namespace EFCoreExercice01
 
             while (true)
             {
-                Console.WriteLine("\t1. Voir les adresses");
-                Console.WriteLine("\t2. Ajouter une adresse");
-                Console.WriteLine("\t3. Editer une adresse");
-                Console.WriteLine("\t4. Supprimer une adresse");
+                Console.WriteLine("\t1. Ajouter un client");
+                Console.WriteLine("\t2. Afficher la liste des clients");
+                Console.WriteLine("\t3. Afficher les réservations d'un client");
+                Console.WriteLine("\t4. Ajouter une réservation");
+                Console.WriteLine("\t5. Annuler une réservation");
+                Console.WriteLine("\t6. Afficher la liste des réservations");
+                Console.WriteLine("\t7. Afficher la liste des chambres libres");
                 Console.WriteLine("\t0. Quitter le programme\n");
 
                 Console.Write("\nEntrez votre choix : ");

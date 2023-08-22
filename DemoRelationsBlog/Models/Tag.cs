@@ -9,7 +9,7 @@ namespace DemoRelationsBlog.Models
     internal class Tag
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         //public List<Blog> Blogs { get; set; }   
         public List<BlogTag> BlogTags { get; set; } = new List<BlogTag>();
