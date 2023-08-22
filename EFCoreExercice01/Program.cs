@@ -18,6 +18,7 @@ namespace ADOExercices2
             int intID;
             List<Adresse> adresses;
             Adresse adresse;
+            // <using> permet de sortir de l'allocation à la fin du prg ou de la methode
             using var context = new ApplicationDbContext();
 
             // ------------------------------
@@ -36,6 +37,7 @@ namespace ADOExercices2
                         Console.WriteLine("------- Liste des adresses : ");
                         adresses = context.Adresses.ToList();
                         foreach (var a in adresses)
+                            // on pouvait aussi surcharger le ToStirng() pour afficher l'adresse
                             Console.WriteLine($"    {a.Id} {a.NumeroVoie} {a.Complement} {a.IntituleVoie} {a.CodePostal} {a.Commune}");
                         break;
 
@@ -88,11 +90,6 @@ namespace ADOExercices2
                         context.SaveChanges();
                         Console.WriteLine($"Adresse {intID} supprimée !!!");
                         break;
-
-                    //case 5: // renommer les colonnes
-                    //    Console.WriteLine("-------- Recherche des adresses par le nom de la commune");
-                    //    migrationBuilder.RenameColumn(name: "CodePostal", table: "Adresses", newName: "code_postal");
-                    //    break;
 
                     default:
                         Console.Clear();

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace EFCoreExercice01.Models
 {
+    [Table("")]
     internal class Adresse
     {
         [Key]
