@@ -5,25 +5,23 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace EFCoreExercice02.Models
 {
+    [Table("booking_room")]
     internal class BookingRoom
     {
-        [Key]
+        [Comment("-- id de la reservation --")]
         [Column("booking_id")]
+        //[ForeignKey(nameof(Booking)] => le nom de la var contient ID donc pas nécessaire
         public int BookingId { get; set; }
-        [Key]
+        [Comment("-- id de la chambre reservee--")]
         [Column("room_id")]
+        //[ForeignKey(nameof(RoomId)] => le nom de la var contient ID donc pas nécessaire
         public int RoomId { get; set; }
-        [Key]
-        [Required]
-        [Column("begin_date")]
-        public DateTime BeginningDate { get; set; }
-        [Key]
-        [Required]
-        [Column("end_date")]
-        public DateTime EndDate { get; set; }
+        [Comment("-- date de mise à jour de la reservation --")]
+        [Column("update_date")]
         public DateTime UpdateDate { get; set; }
 
 

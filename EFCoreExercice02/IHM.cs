@@ -1,10 +1,11 @@
-﻿using System;
+﻿using EFCoreExercice02.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EFCoreExercice01
+namespace EFCoreExercice02
 {
     internal static class IHM
     {
@@ -35,58 +36,61 @@ namespace EFCoreExercice01
                 return intChoixMenu;
             }
         }
-        public static (string numVoie, string complementAdr, string intituleVoie, string commune, int codePostal) StartAdresse()
+        public static (string strLastname, string strFirstname, string strTel ) StartClient()
         {
             while (true)
             {
-                Console.Write("Veuillez entrer le numéro de voie ? ");
-                string strNumVoie = Console.ReadLine()!;
+                Console.Write("Veuillez entrer le nom du client ? ");
+                string strLastname = Console.ReadLine()!;
 
-                Console.Write("Veuillez entrer le complement d'adresse ? ");
-                string strComplement = Console.ReadLine()!;
+                Console.Write("Veuillez entrer le prénom du client ? ");
+                string strFirstname = Console.ReadLine()!;
 
-                Console.Write("Veuillez entrer l'intitulé de la voie ? ");
-                string strIntituleVoie = Console.ReadLine()!;
+                Console.Write("Veuillez entrer le téléphone du client ? ");
+                string strTel = Console.ReadLine()!;
 
-                Console.Write("Veuillez entrer la commune ? ");
-                string strCommune = Console.ReadLine()!;
-
-                Console.Write("Veuillez entrer le code postal ? ");
-                string strCodePostal = Console.ReadLine()!;
-                int intCodePostal;
-                while (!int.TryParse(strCodePostal, out intCodePostal))
-                {
-                    Console.Write("\t\tSaisie invalide ! Réessayer : ");
-                    strCodePostal = Console.ReadLine()!;
-                }
-
-                return (strNumVoie, strComplement, strIntituleVoie, strCommune, intCodePostal);
+                return (strLastname, strFirstname, strTel);
             }
         }
-        public static string StartRechercheAdresseParNom()
+        public static (DateTime dateDebut, DateTime dateFin, EnumBookingStatus enmBooking, int idClient, int numChambre) StartReservation()
         {
             while (true)
             {
-                Console.Write("Veuillez entrer le début du nom de la commune ? ");
-                string strCommune = Console.ReadLine()!;
-
-                return strCommune;
-            }
-        }
-        public static int SelectIdAdresse()
-        {
-            while (true)
-            {
-                Console.Write("Veuillez saisir l'ID de la commune à éditer/supprimer ? ");
-                string strID = Console.ReadLine()!;
-                int intID;
-                while (!int.TryParse(strID, out intID))
+                Console.Write("Veuillez saisir l'ID du client ? ");
+                string strTmp = Console.ReadLine()!;
+                int intIdClient;
+                while (!int.TryParse(strTmp, out intIdClient))
                 {
                     Console.Write("\t\tSaisie invalide ! Réessayer : ");
-                    strID = Console.ReadLine()!;
+                    strTmp = Console.ReadLine()!;
                 }
 
-                return intID;
+                Console.Write("Veuillez entrer la date de début de réservation ? ");
+                strTmp = Console.ReadLine()!;
+                DateTime datDebut;
+                while (!DateTime.TryParse(strTmp, out datDebut))
+                {
+                    Console.Write("\t\tSaisie invalide ! Réessayer : ");
+                    strTmp = Console.ReadLine()!;
+                }
+                Console.Write("Veuillez entrer la date de fin de réservation ? ");
+                DateTime datFin;
+                while (!DateTime.TryParse(strTmp, out datFin))
+                {
+                    Console.Write("\t\tSaisie invalide ! Réessayer : ");
+                    strTmp = Console.ReadLine()!;
+                }
+
+                Console.Write("Veuillez saisir le numéro de chambre ? ");
+                strTmp = Console.ReadLine()!;
+                int intNumChambre;
+                while (!int.TryParse(strTmp, out intNumChambre))
+                {
+                    Console.Write("\t\tSaisie invalide ! Réessayer : ");
+                    strTmp = Console.ReadLine()!;
+                }
+
+                return (datDebut,datFin, EnumBookingStatus.inProgress, intIdClient, intNumChambre);
             }
         }
 

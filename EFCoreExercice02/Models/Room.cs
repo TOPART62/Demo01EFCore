@@ -22,15 +22,19 @@ namespace EFCoreExercice02.Models
     [Table("room")]
     internal class Room
     {
+        [Comment("-- id de la chambre --")]
         [Key]
         [Column("id")]
         public int Id { get; set; }
+        [Comment("-- status de la chambre --")]
         [Required]
         [Column("status")]
         public EnumRoomStatus Status { get; set; }
+        [Comment("-- numero de la chambre --")]
         [Required]
         [Column("beds_number")]
         public int BedsNumber{ get; set; }
+        [Comment("-- tarif de la chambre --")]
         [Column("room_rate")]
         [Required]
         [Precision(8,2)] 

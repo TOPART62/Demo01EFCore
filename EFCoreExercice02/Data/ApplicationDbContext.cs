@@ -7,7 +7,7 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DemoRelationsBlog.Data
+namespace EFCoreExercice02.Data
 {
     internal class ApplicationDbContext : DbContext
     {
@@ -18,7 +18,7 @@ namespace DemoRelationsBlog.Data
         public DbSet<Room> Rooms{ get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Booking> Bookings { get; set; }
-        
+        public DbSet<BookingRoom> BookingRooms{ get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -50,6 +50,13 @@ namespace DemoRelationsBlog.Data
                 Status = 0,
                 ClientId = 1
             });
+            modelBuilder.Entity<BookingRoom>().HasData(
+            new BookingRoom()
+            {
+                BookingId = 1,
+                RoomId = 1
+            });
+            modelBuilder.Entity<BookingRoom>().HasKey(br => new { br.BookingId, br.RoomId});
         }
 
     }

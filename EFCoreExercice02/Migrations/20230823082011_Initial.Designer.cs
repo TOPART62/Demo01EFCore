@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCoreExercice02.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230822143431_Initial")]
+    [Migration("20230823082011_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,25 +29,30 @@ namespace EFCoreExercice02.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("id");
+                        .HasColumnName("id")
+                        .HasComment("-- id de la reservation --");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("BeginningDate")
                         .HasColumnType("datetime2")
-                        .HasColumnName("begin_date");
+                        .HasColumnName("begin_date")
+                        .HasComment("-- date debut de reservation --");
 
                     b.Property<int>("ClientId")
                         .HasColumnType("int")
-                        .HasColumnName("client_id");
+                        .HasColumnName("client_id")
+                        .HasComment("-- id du client de la reservation --");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2")
-                        .HasColumnName("end_date");
+                        .HasColumnName("end_date")
+                        .HasComment("-- date foin de reservation --");
 
                     b.Property<int>("Status")
                         .HasColumnType("int")
-                        .HasColumnName("status");
+                        .HasColumnName("status")
+                        .HasComment("-- status de la reservation --");
 
                     b.HasKey("Id");
 
@@ -66,29 +71,63 @@ namespace EFCoreExercice02.Migrations
                         });
                 });
 
+            modelBuilder.Entity("EFCoreExercice02.Models.BookingRoom", b =>
+                {
+                    b.Property<int>("BookingId")
+                        .HasColumnType("int")
+                        .HasColumnName("booking_id")
+                        .HasComment("-- id de la reservation --");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int")
+                        .HasColumnName("room_id")
+                        .HasComment("-- id de la chambre reservee--");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("update_date")
+                        .HasComment("-- date de mise à jour de la reservation --");
+
+                    b.HasKey("BookingId", "RoomId");
+
+                    b.ToTable("booking_room");
+
+                    b.HasData(
+                        new
+                        {
+                            BookingId = 1,
+                            RoomId = 1,
+                            UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
+                });
+
             modelBuilder.Entity("EFCoreExercice02.Models.Client", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("id");
+                        .HasColumnName("id")
+                        .HasComment("-- id du client --");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Firstname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("first_name");
+                        .HasColumnName("first_name")
+                        .HasComment("-- prenom du client --");
 
                     b.Property<string>("Lastname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("last_name");
+                        .HasColumnName("last_name")
+                        .HasComment("-- nom du client --");
 
                     b.Property<string>("Tel")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("tel");
+                        .HasColumnName("tel")
+                        .HasComment("-- telephone du client --");
 
                     b.HasKey("Id");
 
@@ -109,29 +148,28 @@ namespace EFCoreExercice02.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("id");
+                        .HasColumnName("id")
+                        .HasComment("-- id de la chambre --");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("BedsNumber")
                         .HasColumnType("int")
-                        .HasColumnName("beds_number");
-
-                    b.Property<int?>("BookingId")
-                        .HasColumnType("int");
+                        .HasColumnName("beds_number")
+                        .HasComment("-- numero de la chambre --");
 
                     b.Property<decimal>("RoomRate")
                         .HasPrecision(8, 2)
                         .HasColumnType("decimal(8,2)")
-                        .HasColumnName("room_rate");
+                        .HasColumnName("room_rate")
+                        .HasComment("-- tarif de la chambre --");
 
                     b.Property<int>("Status")
                         .HasColumnType("int")
-                        .HasColumnName("status");
+                        .HasColumnName("status")
+                        .HasComment("-- status de la chambre --");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BookingId");
 
                     b.ToTable("room");
 
@@ -154,18 +192,6 @@ namespace EFCoreExercice02.Migrations
                         .IsRequired();
 
                     b.Navigation("Client");
-                });
-
-            modelBuilder.Entity("EFCoreExercice02.Models.Room", b =>
-                {
-                    b.HasOne("EFCoreExercice02.Models.Booking", null)
-                        .WithMany("Rooms")
-                        .HasForeignKey("BookingId");
-                });
-
-            modelBuilder.Entity("EFCoreExercice02.Models.Booking", b =>
-                {
-                    b.Navigation("Rooms");
                 });
 #pragma warning restore 612, 618
         }
