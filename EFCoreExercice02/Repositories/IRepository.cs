@@ -22,7 +22,7 @@ namespace EFCoreExercice02.Repositories
         bool Add(TEntity entity);
 
         //READ
-        TEntity? Get(int id);
+        TEntity? GetById(int id);
         TEntity? Get(Expression<Func<TEntity, bool>> predicate);//repository.Get(e => e.qqch == "qqch"
         List<TEntity> GetAll(); 
         List<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate);

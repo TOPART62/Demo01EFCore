@@ -11,7 +11,10 @@ namespace EFCoreExercice02.Data
 {
     internal class ApplicationDbContext : DbContext
     {
+// Un champ non-nullable doit contenir une valeur non-null lors de la fermeture du constructeur. Envisagez de déclarer le champ comme nullable.
+#pragma warning disable CS8618 
         public ApplicationDbContext()
+#pragma warning restore CS8618 
         {
         }
 
@@ -53,10 +56,16 @@ namespace EFCoreExercice02.Data
             modelBuilder.Entity<BookingRoom>().HasData(
             new BookingRoom()
             {
+                Id = 1,
                 BookingId = 1,
                 RoomId = 1
             });
-            modelBuilder.Entity<BookingRoom>().HasKey(br => new { br.BookingId, br.RoomId});
+            //modelBuilder.Entity<BookingRoom>().HasKey(
+            //  br => new
+            //  {
+            //      br.BookingId,
+            //      br.RoomId
+            //  });
         }
 
     }

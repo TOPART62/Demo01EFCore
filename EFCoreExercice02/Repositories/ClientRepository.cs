@@ -29,7 +29,7 @@ namespace EFCoreExercice02.Repositories
         }
 
         //READ
-        public Client? Get(int id)
+        public Client? GetById(int id)
         {
             if (id == 0) return null;
             Client client = _dbContext.Clients.Find(id)!;
@@ -55,17 +55,19 @@ namespace EFCoreExercice02.Repositories
         // UPDATE
         public bool Update(Client entity)
         {
-            var clientToUpdate = Get(entity.Id); 
-            if (clientToUpdate == null) return false;
+            var clientToUpdate = GetById(entity.Id);
+            if (clientToUpdate == null)
+                return false;
             _dbContext.Clients.Update(clientToUpdate);
             return (_dbContext.SaveChanges() > 0);
         }
         //DELETE
         public bool Delete(Client entity)
         {
-            var clientToDelete = Get(entity.Id);
-            if (clientToDelete == null) return false;
-            _dbContext.Clients.Remove(clientToDelete);  
+            var clientToDelete = GetById(entity.Id);
+            if (clientToDelete == null)
+                return false;
+            _dbContext.Clients.Remove(clientToDelete);
             return (_dbContext.SaveChanges() > 0);    
         }
 
